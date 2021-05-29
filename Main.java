@@ -1,8 +1,41 @@
 import java.util.*;
 
 class Main {
+  void leftRotate(int arr[], int d, int n) {
+    d = d % n;
+    int i, j, k, temp;
+    int g_c_d = gcd(d, n);
+    for (i = 0; i < g_c_d; i++) {
+      temp = arr[i];
+      j = i;
+      while (true) {
+        k = j + d;
+        if (k >= n)
+          k = k - n;
+        if (k == i)
+          break;
+        arr[j] = arr[k];
+        j = k;
+      }
+      arr[j] = temp;
+    }
+  }
+
+  void printArray(int arr[], int size) {
+    int i;
+    for (i = 0; i < size; i++)
+      System.out.print(arr[i] + " ");
+  }
+
+  int gcd(int a, int b) {
+    if (b == 0)
+      return a;
+    else
+      return gcd(b, a % b);
+  }
+
   public static void main(String[] args) {
-    Main m = new Main();
+    Main rotate = new Main();
     Scanner sc = new Scanner(System.in);
     System.out.print("Enter Test cases nos. you want: ");
     int tc = sc.nextInt();
@@ -11,35 +44,24 @@ class Main {
     // int rotateArray = sc.nextInt();
 
     while (tc != 0) {
-      // int array[] = new int[sizeOfArray];
       System.out.print("Enter Array Size and number to shift array : ");
       for (int j = 0; j < 2; j++) {
         arrayData[j] = sc.nextInt();
       }
       int array[] = new int[arrayData[0]];
-      System.out.print("Enter "+ arrayData[0]+" Array Element: ");
+      System.out.print("Enter " + arrayData[0] + " Array Element: ");
       for (int i = 0; i < array.length; i++) {
         array[i] = sc.nextInt();
       }
-      m.rotateArray(array, arrayData[1]);
-      for (int i = 0; i < array.length; i++) {
-        System.out.print(array[i] + " ");
-      }
-      System.out.println();
-    tc--;
-    }
-    
-    sc.close();
-  }
 
-  void rotateArray(int[] array, int shift) {
-    int firstEle, j;
-    for (int i = 0; i < shift; i++) {
-      firstEle = array[0];
-      for (j = 0; j < array.length-1; j++) {
-        array[j] = array[j + 1];
-      }
-    array[array.length-1] = firstEle;
+      rotate.leftRotate(array, arrayData[1], array.length);
+      rotate.printArray(array, array.length);
+      System.out.println();
+      tc--;
+      /*
+       * int arr[] = { 1, 2, 3, 4, 5, 6, 7 }; rotate.leftRotate(arr, 2, 7);
+       * rotate.printArray(arr, 7);
+       */
     }
   }
 }
