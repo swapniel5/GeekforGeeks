@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Main {
+class rotateArray {
   void leftRotate(int arr[], int d, int n) {
     d = d % n;
     int i, j, k, temp;
@@ -35,13 +35,11 @@ class Main {
   }
 
   public static void main(String[] args) {
-    Main rotate = new Main();
+    rotateArray rotate = new rotateArray();
     Scanner sc = new Scanner(System.in);
     System.out.print("Enter Test cases nos. you want: ");
     int tc = sc.nextInt();
     int arrayData[] = new int[2];
-    // int sizeOfArray = sc.nextInt();
-    // int rotateArray = sc.nextInt();
 
     while (tc != 0) {
       System.out.print("Enter Array Size and number to shift array : ");
@@ -58,10 +56,7 @@ class Main {
       rotate.printArray(array, array.length);
       System.out.println();
       tc--;
-      /*
-       * int arr[] = { 1, 2, 3, 4, 5, 6, 7 }; rotate.leftRotate(arr, 2, 7);
-       * rotate.printArray(arr, 7);
-       */
     }
+    sc.close();
   }
 }
